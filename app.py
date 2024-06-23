@@ -7,13 +7,13 @@ import codecs
 import requests
 from bs4 import BeautifulSoup
 
-os.system("clear")
-print('auzefdl')
-
-with open('links.lst', 'r') as link_file:
-	print('\n[Fetching Links]')
-	links = link_file.readlines()
-	
+def main():
+	os.system("clear")
+	print('auzefdl')
+	print('\n[Please paste the links and press enter to continue]')
+	csl = input()
+	links = csl.split(",")
+	videos = {}
 	for linkindex, link in enumerate(links):
 		try:
 			response = requests.get(link.strip())
@@ -32,16 +32,14 @@ with open('links.lst', 'r') as link_file:
 			video_url = url_element['src']
 			
 			print(f"[{linkindex+1}/{len(links)}] Adding {video_title} with url {video_url}")
-			
-			with codecs.open('videos.lst', 'a', 'utf-8') as video_file:
-				video_file.write(f"{video_title},{video_url}\n")
+			videos[video_title] = video_url
 		else:
 			print(f"Could not find required elements {link.strip()}")
 
-with open('videos.lst', 'r') as video_file:
 	print('\n[Downloading]')
-	videos = video_file.readlines()
-	for videoindex, video in enumerate(videos):
-		vs = video.split(',')
-		print(f"[{videoindex}/{str(len(links))}] Downloading '{vs[0]}'")
-		os.system(f"aria2c -x 10 --summary-interval 0 -d 'downloads/' -o '{vs[0]}.mp4' '{vs[1]}' ")
+	for videoindex, (title, url) in enumerate(videos.items()):
+		print(f"[{videoindex}/{str(len(videos))}] Downloading '{title}'")
+		os.system(f"aria2c -x 10 --summary-interval 0 -d 'downloads/' -o '{title}.mp4' '{url}' ")
+
+if __name__ == "__main__":
+    main()
