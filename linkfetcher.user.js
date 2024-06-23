@@ -36,7 +36,7 @@
         const html = document.documentElement.innerHTML;
 
         // Use regex to find all links
-        const regex = /http:\/\/webcast\.istanbul\.edu\.tr\/Mediasite6\/Play\/[a-zA-Z0-9]+/g;
+        const regex = /https?:\/\/webcast\.istanbul\.edu\.tr\/Mediasite[0-9]\/Play\/[a-zA-Z0-9]+/g;
         const links = html.match(regex);
 
         if (links) {
