@@ -18,5 +18,5 @@ This tool is used to batch-download Istanbul University AUZEF lecture videos.
 1. Add Tampermonkey or Greasemonkey extension to your browser.
 2. Install linkfetcher userscript.
 3. Browse the course page and click on "Konu Anlatımı (Video)" so it loads the video links.
-4. You should see a "Extract Links" button in the bottom left corner of the page after installing the userscript. Click on the button to copy the video links. Then, paste them in "links.lst" file.
-5. Run "app.py", it will download the videos in "./downloads/".
+4. You should see a "Extract Links" button in the bottom left corner of the page after installing the userscript. Click on the button to copy the video links. 
+5. Run "app.py". Then, paste the links in the script window. It will download the videos in "./downloads/".
