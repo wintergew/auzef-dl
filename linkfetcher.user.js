@@ -41,10 +41,11 @@
 
         if (links) {
             // Log the links to the console
-            console.log('Extracted Links:', links.join('\n'));
+            console.log('Extracted Links:');
+            console.log(links.join(','));
 
             // Copy the links to the clipboard
-            GM_setClipboard(links.join('\n'));
+            GM_setClipboard(links.join(','));
 
             alert('Links have been copied to the clipboard!');
         } else {
