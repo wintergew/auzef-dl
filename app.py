@@ -30,6 +30,8 @@ def main():
 		if title_element and url_element:
 			video_title = title_element.get_text()
 			video_url = url_element['src']
+			if video_url.startswith('//'):
+				video_url = 'https:' + video_url
 			
 			print(f"[{linkindex+1}/{len(links)}] Adding {video_title} with url {video_url}")
 			videos[video_title] = video_url
